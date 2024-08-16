@@ -19,7 +19,7 @@ const FeaturesPosts = () => {
   }, []);
 
   return (
-    <div className="mt-[200px] lg:px-20 md:px-12 sm:px-8 px-3 mb-[100px]">
+    <div className="mt-[200px] lg:px-20 md:px-12 sm:px-8 px-3 mb-[150px]">
       <div
         id="heading_container"
         className=" mb-5 items-center flex justify-between sm:flex-row flex-col mx-auto sm:mx-0 gap-y-5"
@@ -45,6 +45,8 @@ const FeaturesPosts = () => {
           const blogLink = `Pages/BlogDetails/${post_id}`;
           const author_id = post.author?._id;
           const authorLink = `/Pages/AuthorDetails/${author_id}`;
+          const categoryTitle = post?.category?.title;
+          const categoryLink = `/Pages/CategoryDetails/${categoryTitle}`;
           return (
             <Link href={blogLink}>
               <div
@@ -63,9 +65,11 @@ const FeaturesPosts = () => {
                   />
                 </div>
 
-                <button className="text-base px-2 py-1 absolute top-5 left-3 bg-black text-white rounded-full">
-                  {post.category?.title}
-                </button>
+                <Link href={categoryLink}>
+                  <button className="text-base px-2 py-1 absolute top-5 left-3 bg-black text-white rounded-full">
+                    {post.category?.title}
+                  </button>
+                </Link>
 
                 <div class="p-5">
                   <h5 class="mb-2 text-2xl line-clamp-2 font-bold tracking-tight text-gray-900 dark:text-white">

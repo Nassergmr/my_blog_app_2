@@ -42,13 +42,13 @@ const LatestPosts = () => {
       >
         {latestPosts.map((post) => {
           const post_id = post._id;
-          const blogLink = `Pages/BlogDetails/${post_id}`;
+          const postLink = `Pages/BlogDetails/${post_id}`;
           const author_id = post.author?._id;
-          const categoryTitle = post?.category?.title;
           const authorLink = `/Pages/AuthorDetails/${author_id}`;
+          const categoryTitle = post?.category?.title;
           const categoryLink = `/Pages/CategoryDetails/${categoryTitle}`;
           return (
-            <Link href={blogLink}>
+            <Link href={postLink}>
               <div
                 key={post._id}
                 id="card"
@@ -65,11 +65,9 @@ const LatestPosts = () => {
                   />
                 </div>
 
-                <Link href={categoryLink}>
-                  <button className="text-base px-2 py-1 absolute top-5 left-3 bg-black text-white rounded-full">
-                    {post.category?.title}
-                  </button>
-                </Link>
+                <button className="text-base px-2 py-1 absolute top-5 left-3 bg-black text-white rounded-full">
+                  <Link href={categoryLink}> {post.category?.title}</Link>
+                </button>
 
                 <div class="p-5">
                   <h5 class="mb-2 text-2xl line-clamp-2 font-bold tracking-tight text-gray-900 dark:text-white">
@@ -80,18 +78,17 @@ const LatestPosts = () => {
                   id="author_date"
                   className="flex justify-between items-center mt-auto px-5"
                 >
-                  <Link href={authorLink}>
-                    <p className="border-b-[1px] border-gray-600 text-gray-600 hover:border-black dark:hover:border-white dark:hover:text-white hover:text-black w-fit">
-                      {post.author?.name}
-                    </p>
-                  </Link>
-                  <p className="text-gray-600">
+                  <p className="border-b-[1px] border-gray-600 text-gray-600 hover:border-black dark:hover:border-white dark:hover:text-white hover:text-black w-fit">
+                    <Link href={authorLink}> {post.author?.name} </Link>
+                  </p>
+
+                  <div className="text-gray-600">
                     {new Date(post.publishedAt).toLocaleDateString("en-US", {
                       day: "numeric",
                       month: "long",
                       year: "numeric",
                     })}
-                  </p>
+                  </div>
                 </div>
               </div>
             </Link>

@@ -28,7 +28,7 @@ export async function getSinglePost_2(blogID_2) {
     return SinglePost;
   } catch (error) {
     console.error("Error fetching SinglePost:", error);
-    return null; // Return null instead of an empty array
+    return null;
   }
 }
 
@@ -66,18 +66,20 @@ export default async function Page({ params }) {
   const author_id = SinglePost.author?._id;
   const authorLink = `/Pages/AuthorDetails/${author_id}`;
   const PostByCategory = await getPostsByCategory(SinglePost.category?.title);
+  const categoryTitle = SinglePost?.category?.title;
+  const categoryLink = `/Pages/CategoryDetails/${categoryTitle}`;
 
   return (
-    <div className="mt-[150px]">
+    <div id="blog_Id_2" className="mt-[150px] mb-[150px]">
       <div
         id="single_post_container"
-        className=" pb-[50px] lg:px-20 md:px-12 px-3 sm:px-8 text-center mx-auto transform translate-x-[-50%] relative left-[50%]"
+        className="pb-[50px] lg:px-20 md:px-12 px-3 sm:px-8 text-center mx-auto transform translate-x-[-50%] relative left-[50%]"
       >
         <div
           id="content"
           className="flex gap-y-5 mb-7 gap-x-8 items-center flex-wrap sm:justify-center justify-around"
         >
-          <p className="text-gray-600 dark:text">
+          <p className="text-gray-600">
             {new Date(SinglePost.publishedAt).toLocaleDateString("en-US", {
               day: "numeric",
               month: "long",
@@ -89,7 +91,7 @@ export default async function Page({ params }) {
               {SinglePost.author?.name}
             </p>
           </Link>
-          <Link href="/">
+          <Link href={categoryLink}>
             <h1 className="text-base font-bold px-2 py-1 bg-black text-white rounded-full dark:bg-white dark:text-black">
               {SinglePost.category?.title}
             </h1>
@@ -100,12 +102,12 @@ export default async function Page({ params }) {
         </h1>
         <div
           id="img_container"
-          className="mx-auto w-full lg:h-[700px] sm:h-[500px]
-         h-[350px] rounded-lg"
+          className="mx-auto w-full lg:h-[700px] sm:h-[500px] h-[350px] rounded-lg"
         >
           <img
             className="w-full h-full object-cover rounded-xl"
             src={SinglePost.mainImage?.asset?.url}
+            alt={SinglePost.title}
           />
         </div>
         <div
@@ -130,12 +132,14 @@ export default async function Page({ params }) {
           {PostByCategory.map((post) => {
             const post_id = post._id;
             const blogLink = `/Pages/BlogDetails/${post_id}`;
+            const categoryTitle = post?.category?.title;
+            const categoryLink = `/Pages/CategoryDetails/${categoryTitle}`;
+
             return (
-              <Link href={blogLink}>
+              <Link href={blogLink} key={post._id}>
                 <div
-                  key={post._id}
                   id="card"
-                  className="h-[450px] lg:max-w-lg sm:max-w-2xl w-auto mx-auto relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
+                  className="h-[450px] max-w-lg w-auto  mx-auto relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
                 >
                   <div
                     id="img_container"

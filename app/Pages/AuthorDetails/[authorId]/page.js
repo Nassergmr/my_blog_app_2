@@ -26,6 +26,7 @@ export async function getAuthor(authorId) {
     return null; // Return null if an error occurs
   }
 }
+
 export async function getAuthorPosts(authorId) {
   const query = `*[_type == "post" && author._ref == "${authorId}"] {
     _id,
@@ -62,10 +63,10 @@ export default async function Page({ params }) {
   const authorPosts = await getAuthorPosts(authorId);
 
   return (
-    <div className="mt-[150px]">
+    <div className="mt-[150px] mb-[150px]">
       <div
         id="author_container"
-        className=" pb-[50px] lg:px-20 md:px-12 sm:px-8 px-3 text-center mx-auto transform translate-x-[-50%] relative left-[50%]"
+        className="pb-[50px] lg:px-20 md:px-12 sm:px-8 px-3 text-center mx-auto transform translate-x-[-50%] relative left-[50%]"
       >
         <h1 className="font-bold md:text-2xl text-xl lg:text-3xl mb-5">
           {author.name}
@@ -75,7 +76,7 @@ export default async function Page({ params }) {
           className="lg:w-[800px] h-auto w-auto md:w-[700px] sm:w-[500px] rounded-xl mx-auto"
         >
           <img
-            className="w-full h-full rounded-xl mb-5 "
+            className="w-full h-full rounded-xl mb-5"
             src={author.image?.asset?.url}
             alt={author.name}
           />
@@ -94,14 +95,15 @@ export default async function Page({ params }) {
           className="lg:px-20 md:px-12 sm:px-8 px-3 grid gap-x-3 gap-y-10 lg:grid-cols-3 grid-cols-1 md:grid-cols-2 justify-between"
         >
           {authorPosts.map((post) => {
-            const postId = post._id;
-            const blogLink = `/Pages/AuthorSinglePostDetails/${postId}`;
+            const blogLink = `/Pages/AuthorSinglePostDetails/${post._id}`;
+            const categoryLink = `/Pages/CategoryDetails/${post?.category?.title}`;
+
             return (
               <Link href={blogLink}>
                 <div
                   key={post._id}
                   id="card"
-                  className="h-[450px] max-w-sm mx-auto col-span-1 relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
+                  className="h-[450px] mx-auto col-span-1 relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
                 >
                   <div
                     id="img_container"
@@ -123,17 +125,18 @@ export default async function Page({ params }) {
                       {post.title}
                     </h5>
                   </div>
+
                   <div
                     id="author_date"
                     className="flex justify-between items-center px-5"
                   >
-                    <p className="text-gray-600">
+                    <div className="text-gray-600">
                       {new Date(post.publishedAt).toLocaleDateString("en-US", {
                         day: "numeric",
                         month: "long",
                         year: "numeric",
                       })}
-                    </p>
+                    </div>
                   </div>
                 </div>
               </Link>

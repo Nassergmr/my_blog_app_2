@@ -2,7 +2,7 @@ import { Lora } from "next/font/google";
 import "./globals.css";
 import Navebar from "./_components/Header/Navebar/navebar";
 import { ThemeProvider } from "@/components/theme-provider";
-// import Footer from "./_components/Footer/footer";
+import Footer from "./_components/Footer/footer";
 
 const lora = Lora({ subsets: ["latin"] });
 
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         >
           <Navebar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

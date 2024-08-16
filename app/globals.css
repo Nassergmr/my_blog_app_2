@@ -89,3 +89,6 @@ ul {
     @apply bg-background text-foreground;
   }
 }
+#title h1 {
+  line-height: 4rem; /* or any specific value */
+}

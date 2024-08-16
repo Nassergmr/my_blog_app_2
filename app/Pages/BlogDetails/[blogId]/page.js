@@ -28,7 +28,7 @@ export async function getSinglePost(blogId) {
     return SinglePost;
   } catch (error) {
     console.error("Error fetching SinglePost:", error);
-    return null; // Return null instead of an empty array
+    return null;
   }
 }
 
@@ -66,16 +66,17 @@ export default async function Page({ params }) {
   const author_id = SinglePost.author?._id;
   const authorLink = `/Pages/AuthorDetails/${author_id}`;
   const PostByCategory = await getPostsByCategory(SinglePost.category?.title);
+  const categoryLink_2 = `/Pages/CategoryDetails/${SinglePost.category?.title}`;
 
   return (
-    <div className="mt-[150px]">
+    <div className="mt-[150px] mb-[150px]">
       <div
         id="single_post_container"
-        className=" lg:px-20 md:px-12 overflow-auto px-3 sm:px-8 text-center mx-auto transform translate-x-[-50%] relative left-[50%]"
+        className="lg:px-20 md:px-12 overflow-auto px-3 sm:px-8 text-center mx-auto transform translate-x-[-50%] relative left-[50%]"
       >
         <div
           id="content"
-          className="flex flex-wrap  pb-[50px]  gap-y-5 mb-7 gap-x-8 items-center sm:justify-center justify-around"
+          className="flex flex-wrap pb-[50px] gap-y-5 mb-7 gap-x-8 items-center sm:justify-center justify-around"
         >
           <p className="text-gray-600 dark:text">
             {new Date(SinglePost.publishedAt).toLocaleDateString("en-US", {
@@ -89,7 +90,7 @@ export default async function Page({ params }) {
               {SinglePost.author?.name}
             </p>
           </Link>
-          <Link href="/">
+          <Link href={categoryLink_2}>
             <h1 className="text-base font-bold px-2 py-1 bg-black text-white rounded-full dark:bg-white dark:text-black">
               {SinglePost.category?.title}
             </h1>
@@ -130,12 +131,14 @@ export default async function Page({ params }) {
           {PostByCategory.map((post) => {
             const post_id = post._id;
             const blogLink = `/Pages/BlogDetails/${post_id}`;
+            const categoryTitle = post?.category?.title;
+            const categoryLink = `/Pages/CategoryDetails/${categoryTitle}`;
+
             return (
-              <Link href={blogLink}>
+              <Link href={blogLink} key={post._id}>
                 <div
-                  key={post._id}
                   id="card"
-                  className="h-[450px] max-w-lg mx-auto relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
+                  className="h-[450px] max-w-lg w-auto mx-auto relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
                 >
                   <div
                     id="img_container"
