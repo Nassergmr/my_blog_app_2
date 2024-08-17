@@ -102,7 +102,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="py-6 lg:px-20 md:px-12 sm:px-8 px-3 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
+        <div className="py-6 lg:px-20 md:px-12 sm:px-8 px-3  md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
             © 2024 <a href="https://flowbite.com/">Blog Horizon</a>. All Rights
             Reserved.

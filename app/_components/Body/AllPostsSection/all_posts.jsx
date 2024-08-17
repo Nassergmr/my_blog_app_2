@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getAllPosts } from "@/app/Apis/all_posts";
+import Pagination from "@/app/Elements/pagination";
 
 const AllPosts = () => {
   const [allPosts, setAllPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
 
   useEffect(() => {
     const fetchAllPosts = async () => {
@@ -17,21 +20,33 @@ const AllPosts = () => {
     fetchAllPosts();
   }, []);
 
+  // Calculate total pages
+  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+  // Get current posts for the current page
+  const currentPosts = allPosts.slice(
+    (currentPage - 1) * postsPerPage,
+    currentPage * postsPerPage
+  );
+
   return (
-    <div className="mt-[200px] lg:px-20 md:px-12 sm:px-8 px-3 mb-[150px]">
-      <div
-        id="heading_container"
-        className=" mb-5 items-center flex justify-between sm:flex-row flex-col mx-auto sm:mx-0 gap-y-5"
-      >
-        <h1 className="text-2xl font-bold border-b-2 border-black dark:border-white">
-          Our Blogs
-        </h1>
+    <div className="sm:mt-[150px] mt-[100px] lg:px-20 md:px-12 sm:px-8 px-3 mb-[150px]">
+      <div id="heading_container" className="mx-auto text-center mb-5">
+        <div id="title" className="flex gap-x-3 items-center justify-center">
+          <h1 className="font-bold md:text-4xl text-3xl lg:text-5xl text-pretty leading-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
+            Our Blogs
+          </h1>
+        </div>
+        <p className="w-full text-lg mx-auto mt-4 mb-[50px] text-gray-600 dark:text-white lg:w-[60%] md:w-[80%]">
+          Discover insightful articles and updates on various topics, designed
+          to inform and inspire. Stay updated with our latest posts.
+        </p>
       </div>
       <ul
         id="cards_container"
         className="grid gap-x-3 gap-y-10 lg:grid-cols-3 grid-cols-1 md:grid-cols-2 justify-between"
       >
-        {allPosts.map((post) => {
+        {currentPosts.map((post) => {
           const post_id = post._id;
           const blogLink = `/Pages/BlogDetails/${post_id}`;
           const author_id = post.author?._id;
@@ -39,18 +54,17 @@ const AllPosts = () => {
           const categoryTitle = post?.category?.title;
           const categoryLink = `/Pages/CategoryDetails/${categoryTitle}`;
           return (
-            <Link href={blogLink}>
+            <Link href={blogLink} key={post._id}>
               <div
-                key={post._id}
                 id="card"
-                class="h-[450px] max-w-sm mx-auto col-span-1 relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
+                className="h-[450px] max-w-sm mx-auto col-span-1 relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
               >
                 <div
                   id="img_continer"
                   className="w-full rounded-lg h-80 overflow-hidden"
                 >
                   <img
-                    className="w-full h-full  object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     src={post.mainImage?.asset?.url}
                     alt={post.title}
                   />
@@ -89,6 +103,11 @@ const AllPosts = () => {
           );
         })}
       </ul>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };
