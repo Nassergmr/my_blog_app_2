@@ -19,7 +19,7 @@ const FeaturesPosts = () => {
   }, []);
 
   return (
-    <div className="mt-[200px] lg:px-20 md:px-12 sm:px-8 px-3 mb-[150px]">
+    <div className="sm:mt-[200px] mt-[100px] lg:px-20 md:px-12 sm:px-8 px-3 mb-[100px]">
       <div
         id="heading_container"
         className=" mb-5 items-center flex justify-between sm:flex-row flex-col mx-auto sm:mx-0 gap-y-5"

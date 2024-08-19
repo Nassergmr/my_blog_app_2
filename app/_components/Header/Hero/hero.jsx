@@ -15,7 +15,7 @@ export default function Hero() {
       viewport={{ once: true }}
     >
       <div id="title" className="flex gap-x-3 items-center justify-center">
-        <h2 className="font-bold leading-10	 md:text-[36px] text-[30px] lg:text-[48px]">
+        <h2 className="font-bold leading-10 md:leading-[60px]	 md:text-[36px] text-[30px] lg:text-[48px]">
           Investigating profound ideas and insights that truly matter
         </h2>
       </div>
