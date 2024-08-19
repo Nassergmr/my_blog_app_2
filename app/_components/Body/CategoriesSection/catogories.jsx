@@ -54,7 +54,7 @@ const Categories = () => {
                   />
                   <h2
                     className=" opacity-0 absolute transition-opacity duration-500 ease-in-out
-                 group-hover:opacity-100 text-white top-[52%] left-[52%] text-[30px] font-bold transform -translate-x-1/2 -translate-y-1/2"
+                 group-hover:opacity-100 text-white top-[52%] left-[52%] sm:text-[30px] text-[25px] font-bold transform -translate-x-1/2 -translate-y-1/2"
                   >
                     {category.title}
                   </h2>

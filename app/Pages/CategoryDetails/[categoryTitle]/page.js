@@ -64,7 +64,7 @@ export default async function Page({ params }) {
             {category.title}
           </h1>
         </div>
-        <p className="w-full text-lg mx-auto mt-4 text-gray-600 dark:text-white lg:w-[60%] md:w-[80%]">
+        <p className="w-full text-lg mx-auto text-gray-600 dark:text-white lg:w-[60%] md:w-[80%]">
           {category.description}
         </p>
       </div>

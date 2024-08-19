@@ -76,7 +76,7 @@ export default async function Page({ params }) {
       >
         <div
           id="content"
-          className="flex flex-wrap pb-[50px] gap-y-5 mb-7 gap-x-8 items-center sm:justify-center justify-around"
+          className="flex flex-wrap gap-y-5 mb-7 gap-x-8 items-center sm:justify-center justify-around"
         >
           <p className="text-gray-600 dark:text">
             {new Date(SinglePost.publishedAt).toLocaleDateString("en-US", {
