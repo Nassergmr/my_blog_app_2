@@ -99,9 +99,8 @@ export default async function Page({ params }) {
             const categoryLink = `/Pages/CategoryDetails/${post?.category?.title}`;
 
             return (
-              <Link href={blogLink}>
+              <Link href={blogLink} key={post._id}>
                 <div
-                  key={post._id}
                   id="card"
                   className="h-[450px] mx-auto col-span-1 relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
                 >

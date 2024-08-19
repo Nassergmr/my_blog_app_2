@@ -13,7 +13,6 @@ const AllPosts = () => {
   useEffect(() => {
     const fetchAllPosts = async () => {
       const data = await getAllPosts();
-      console.log("Fetched posts:", data); // Inspect the data here
       setAllPosts(data);
     };
 

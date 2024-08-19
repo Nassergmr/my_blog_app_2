@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { getFeaturesPosts } from "@/app/Apis/featured_posts";
+import { motion } from "framer-motion";
 
 const FeaturesPosts = () => {
   const [featuresPosts, setFeaturesPosts] = useState([]);
@@ -11,7 +12,6 @@ const FeaturesPosts = () => {
   useEffect(() => {
     const fetchfeaturesPosts = async () => {
       const data = await getFeaturesPosts();
-      console.log("Fetched posts:", data); // Inspect the data here
       setFeaturesPosts(data);
     };
 
@@ -48,9 +48,12 @@ const FeaturesPosts = () => {
           const categoryTitle = post?.category?.title;
           const categoryLink = `/Pages/CategoryDetails/${categoryTitle}`;
           return (
-            <Link href={blogLink}>
-              <div
-                key={post._id}
+            <Link href={blogLink} key={post._id}>
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                viewport={{ once: true }}
                 id="card"
                 class="h-[450px] max-w-sm mx-auto col-span-1 relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
               >
@@ -93,7 +96,7 @@ const FeaturesPosts = () => {
                     })}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </Link>
           );
         })}

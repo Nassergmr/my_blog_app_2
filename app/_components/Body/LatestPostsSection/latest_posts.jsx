@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getLatestPosts } from "@/app/Apis/latest_posts";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const LatestPosts = () => {
   const [latestPosts, setLatestPosts] = useState([]);
@@ -11,10 +12,8 @@ const LatestPosts = () => {
   useEffect(() => {
     const fetchLatestPosts = async () => {
       const data = await getLatestPosts();
-      console.log("Fetched posts:", data); // Inspect the data here
       setLatestPosts(data);
     };
-
     fetchLatestPosts();
   }, []);
 
@@ -48,9 +47,12 @@ const LatestPosts = () => {
           const categoryTitle = post?.category?.title;
           const categoryLink = `/Pages/CategoryDetails/${categoryTitle}`;
           return (
-            <Link href={postLink}>
-              <div
-                key={post._id}
+            <Link href={postLink} key={post._id}>
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                viewport={{ once: true }}
                 id="card"
                 class="h-[450px] max-w-sm mx-auto col-span-1 relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
               >
@@ -90,7 +92,7 @@ const LatestPosts = () => {
                     })}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </Link>
           );
         })}

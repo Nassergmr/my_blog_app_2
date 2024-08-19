@@ -88,7 +88,7 @@ export default async function Page({ params }) {
             return (
               <div
                 id="card"
-                className="h-[450px] max-w-lg w-auto  mx-auto relative group overflow-hidden cursor-pointer bg-transparent flex flex-col"
+                className="h-[450px] max-w-lg w-auto  mx-auto relative group  cursor-pointer bg-transparent flex flex-col"
               >
                 <Link href={blogLink} key={post._id}>
                   <div

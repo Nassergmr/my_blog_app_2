@@ -11,7 +11,7 @@ export default function Navebar() {
         <li>
           <Link
             href="/"
-            className="font-medium text-xl hover:text-purple-500 w-fit transition ease-in-out duration-100"
+            className="font-medium text-xl hover:text-[#bc52c8] w-fit transition ease-in-out duration-100"
           >
             Home
           </Link>
@@ -19,7 +19,7 @@ export default function Navebar() {
         <li className="">
           <Link
             href="/Pages/AllPosts"
-            className="font-medium text-xl hover:text-purple-500 w-fit transition ease-in-out duration-100"
+            className="font-medium text-xl hover:text-[#bc52c8] w-fit transition ease-in-out duration-100"
           >
             Blogs
           </Link>
