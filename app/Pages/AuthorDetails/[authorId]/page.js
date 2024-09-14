@@ -63,7 +63,7 @@ export default async function Page({ params }) {
   const authorPosts = await getAuthorPosts(authorId);
 
   return (
-    <div className="mt-[150px] mb-[150px]">
+    <div className=" sm:mt-[150px] mt-[100px] mb-[150px]">
       <div
         id="author_container"
         className="pb-[50px] lg:px-20 md:px-12 sm:px-8 px-3 text-center mx-auto transform translate-x-[-50%] relative left-[50%]"

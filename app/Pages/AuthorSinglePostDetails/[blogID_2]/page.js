@@ -70,7 +70,7 @@ export default async function Page({ params }) {
   const categoryLink = `/Pages/CategoryDetails/${categoryTitle}`;
 
   return (
-    <div id="blog_Id_2" className="mt-[150px] mb-[150px]">
+    <div id="blog_Id_2" className="sm:mt-[150px] mt-[100px] mb-[150px]">
       <div
         id="single_post_container"
         className="pb-[50px] lg:px-20 md:px-12 px-3 sm:px-8 text-center mx-auto transform translate-x-[-50%] relative left-[50%]"

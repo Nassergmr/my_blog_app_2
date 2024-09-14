@@ -69,7 +69,7 @@ export default async function Page({ params }) {
   const categoryLink_2 = `/Pages/CategoryDetails/${SinglePost.category?.title}`;
 
   return (
-    <div className="mt-[150px] mb-[150px]">
+    <div className="sm:mt-[150px] mt-[100px] mb-[150px]">
       <div
         id="single_post_container"
         className="lg:px-20 md:px-12 overflow-auto px-3 sm:px-8 text-center mx-auto transform translate-x-[-50%] relative left-[50%]"
