@@ -1,5 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
+import Image from "next/image";
 import Link from "next/link";
 
 export async function getAuthor(authorId) {
@@ -75,8 +76,11 @@ export default async function Page({ params }) {
           id="img_container"
           className="lg:w-[800px] h-auto w-auto md:w-[700px] sm:w-[500px] rounded-xl mx-auto"
         >
-          <img
-            className="w-full h-full rounded-xl mb-5"
+          <Image
+            layout="responsive"
+            width={800}
+            height={600}
+            className="rounded-xl mb-5 object-cover"
             src={author.image?.asset?.url}
             alt={author.name}
           />

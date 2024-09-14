@@ -1,4 +1,7 @@
 export default function Footer() {
+  const date = new Date();
+  const year = date.getFullYear();
+
   return (
     <footer className="bg-white dark:bg-gray-900 w-full">
       <div className="mx-auto w-full ">
@@ -104,8 +107,8 @@ export default function Footer() {
         </div>
         <div className="py-6 lg:px-20 md:px-12 sm:px-8 px-3  md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
-            © 2024 <a href="https://flowbite.com/">Blog Horizon</a>. All Rights
-            Reserved.
+            © {year} <a href="https://flowbite.com/">Blog Horizon</a>. All
+            Rights Reserved.
           </span>
           <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
             <a
